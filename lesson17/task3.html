@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <title>Five o'clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            color: red;
+            margin-top: 50px;
+        }
+        .content {
+            margin-top: 100px;
+            text-align: center;
+        }
+        #hours, #minutes, #seconds {
+            font-size: 40px;
+        }
+    </style>
+    <script>
+        var Timer = function () {
+
+            this.init = function () {
+                timer.setTime();
+                window.setInterval(function () {
+                    timer.setTime();
+                }, 1000);
+            };
+
+            this.formatted = function(num, length) {
+                return ('00'.substring(0, length-1)+num).substr(String(num).length-1);
+            };
+
+            this.setTime = function () {
+                var date = new Date();
+                var hours = this.formatted(date.getHours(), 2);
+                var minutes = this.formatted(date.getMinutes(), 2);
+                var seconds = this.formatted(date.getSeconds(), 2);
+
+                document.getElementById('hours').innerHTML = hours;
+                document.getElementById('minutes').innerHTML = minutes;
+                document.getElementById('seconds').innerHTML = seconds;
+            };
+
+        };
+
+        var timer = new Timer();
+
+        window.onload = function () {
+            timer.init();
+        };
+    </script>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Five o'clock</h1>
+</div>
+
+<div class="content">
+    <div class="timer">
+        <button id="hours" type="button" class="btn btn-default btn-lg">00</button>
+        <button id="minutes" type="button" class="btn btn-default btn-lg">00</button>
+        <button id="seconds" type="button" class="btn btn-default btn-lg">00</button>
+    </div>
+</div>
+
+</body>
+</html>

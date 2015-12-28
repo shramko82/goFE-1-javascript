@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+
+        * {
+            margin-left: 50px;
+        }
+
+
+        .table {
+            width: 280px;
+            margin: 50px;
+        }
+
+        .table tr {
+            height: 40px;
+        }
+
+        #calendar td {
+            width: 40px;
+            border:  2px solid black;
+            font-weight: bold;
+            background: lightgray;
+        }
+        #calendar th {
+            width: 40px;
+            border:  2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <p>Month</p>
+    <input class="month" type="text">
+    <p>Year</p>
+    <input class="year" type="text">
+    <br>
+    <br>
+    <input id="fill" type="button" value="Fill calendar">
+
+    <table class="table table-bordered" id="calendar">
+        <tr class="header">
+            <td>вс</td>
+            <td>пн</td>
+            <td>вт</td>
+            <td>ср</td>
+            <td>чт</td>
+            <td>пт</td>
+            <td>сб</td>
+        </tr>
+        <tr class="row1">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="row2">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="row3">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="row4">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="row5">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="row6">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </table>
+
+    <script>
+        (function(){
+            document.getElementById('fill').addEventListener("click", fillCalendar, false);
+            var cells = document.querySelectorAll('#calendar th');
+            function fillCalendar() {
+                emptyCalendar();
+                var month = document.querySelector('.month').value;
+                var year = document.querySelector('.year').value;
+                var start = new Date(year, month-1, 1).getDay();
+                var finish = 32 - new Date(year, month-1, 32).getDate()+start-1;
+                for (var i=start; i <= finish; i++) {
+                    cells[i].innerHTML = i-start+1;
+                }
+            }
+            function emptyCalendar() {
+                for (var i=0; i < cells.length; i++) {
+                    cells[i].innerHTML = '';
+                }
+            }
+        })();
+    </script>
+
+</body>
+</html>
