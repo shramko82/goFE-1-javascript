@@ -32,20 +32,28 @@
                 }, 1000);
             };
 
-            this.formatted = function(num, length) {
+            var formatted = function(num, length) {
                 return ('00'.substring(0, length-1)+num).substr(String(num).length-1);
             };
 
             this.setTime = function () {
                 var date = new Date();
-                var hours = this.formatted(date.getHours(), 2);
-                var minutes = this.formatted(date.getMinutes(), 2);
-                var seconds = this.formatted(date.getSeconds(), 2);
+                var hours = formatted(date.getHours(), 2);
+                var minutes = formatted(date.getMinutes(), 2);
+                var seconds = formatted(date.getSeconds(), 2);
 
                 document.getElementById('hours').innerHTML = hours;
+                document.getElementById('hours').style.color = getRandomColor();
                 document.getElementById('minutes').innerHTML = minutes;
+                document.getElementById('minutes').style.color = getRandomColor();
                 document.getElementById('seconds').innerHTML = seconds;
+                document.getElementById('seconds').style.color = getRandomColor();
+
             };
+
+            var getRandomColor = function(){
+                return 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')';
+            }
 
         };
 
