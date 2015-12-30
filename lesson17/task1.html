@@ -22,6 +22,16 @@
 </ul>
 
 <script>
+    (function(){
+        var elems = document.querySelectorAll('li a');
+        for (var i = 0; i < elems.length; i++) {
+            var href =  elems[i].href;
+            if (href && href.indexOf('http://internal.com') == -1
+                    && href.indexOf('http') != -1 && href.indexOf('localhost') == -1) {
+                elems[i].classList.add("external");
+            }
+        }
+    })();
 
 </script>
 
